@@ -20,7 +20,7 @@ AKatamariPawn::AKatamariPawn()
 	// Set up sphere radius
 	SphereOverlapRadius = 35.0f;
 
-	SphereOverlapSizeIncrease = 0.0005f;
+	SphereOverlapSizeIncrease = 0.0055f;
 
 	// Set up forces
 	RollTorque = 35000000.0f;
@@ -37,10 +37,10 @@ AKatamariPawn::AKatamariPawn()
 	StaticMesh->BodyInstance.MassScale = 10.5f;	
 	StaticMesh->BodyInstance.MaxAngularVelocity = 400.0f;
 	StaticMesh->SetNotifyRigidBodyCollision(true);
-	RootComponent = StaticMesh;	
+	RootComponent = StaticMesh;		
 
-	float x = 24.5f;
-	float z = 24.5f;
+	const float x = 24.5f;
+	const float z = 24.5f;
 
 	// Setup nodules
 	InitializeNodule(NoduleMesh0, NoduleOverlap0, FVector(-x, 0.0f, z));
@@ -84,7 +84,7 @@ void AKatamariPawn::InitializeNodule(UStaticMeshComponent* InputMesh,  USphereCo
 	InputMesh = CreateDefaultSubobject<UStaticMeshComponent>(*MeshName);
 	InputMesh->SetStaticMesh(NoduleStaticMesh);
 	InputMesh->SetCollisionProfileName(FName("NoCollision"));
-	InputMesh->AttachToComponent(StaticMesh, FAttachmentTransformRules::KeepRelativeTransform);
+	InputMesh->SetupAttachment(StaticMesh);
 	InputMesh->SetRelativeLocation(RelativeLocation);
 	InputMesh->SetRelativeScale3D(FVector(0.38f, 0.38f, 0.38f));
 	NoduleStaticMeshArray.Add(InputMesh);
@@ -92,9 +92,8 @@ void AKatamariPawn::InitializeNodule(UStaticMeshComponent* InputMesh,  USphereCo
 	FString ColliderName = "NoduleCollider" + FString::FromInt(NoduleSphereOverlapArray.Num());
 	InputCollider = CreateDefaultSubobject<USphereComponent>(*ColliderName);
 	InputCollider->BodyInstance.SetCollisionProfileName(TEXT("OverlapAll"));
-	InputCollider->SetSphereRadius(SphereOverlapRadius);
-	InputCollider->SetupAttachment(InputMesh);
-	InputCollider->bAbsoluteScale = true;
+	InputCollider->SetSphereRadius(SphereOverlapRadius * 5.0f);
+	InputCollider->AttachToComponent(InputMesh, FAttachmentTransformRules::SnapToTargetIncludingScale);
 	InputCollider->OnComponentBeginOverlap.AddDynamic(this, &AKatamariPawn::OnComponentBeginOverlapSphere);
 	InputCollider->OnComponentEndOverlap.AddDynamic(this, &AKatamariPawn::OnComponentEndOverlapSphere);
 	NoduleSphereOverlapArray.Add(InputCollider);
@@ -103,7 +102,7 @@ void AKatamariPawn::InitializeNodule(UStaticMeshComponent* InputMesh,  USphereCo
 // Called when the game starts or when spawned
 void AKatamariPawn::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay();	
 	
 }
 // Called every frame
@@ -147,16 +146,13 @@ void AKatamariPawn::OnComponentBeginOverlapSphere(UPrimitiveComponent* Overlappe
 
 		FVector AmountToMoveActor = DirectionToCollision * (DistanceToCollision / 2.0f);
 		OtherActor->SetActorLocation(OtherActor->GetActorLocation() + AmountToMoveActor);
-
 		OtherComp->SetSimulatePhysics(false);
 		OtherActor->SetActorEnableCollision(false);
 		OtherComp->WeldTo(OverlappedComponent);		
 
-		// TODO: Other overlaps arent scaling BIG ISSUE
-
 		StaticMesh->SetWorldScale3D(StaticMesh->GetComponentScale() + (FVector(1.0f) * SphereOverlapSizeIncrease));
-		USphereComponent* Temp = Cast<USphereComponent>(OverlappedComponent);
-		Temp->SetSphereRadius(Temp->GetUnscaledSphereRadius() + SphereOverlapSizeIncrease);
+		//USphereComponent* Temp = Cast<USphereComponent>(OverlappedComponent);
+		//Temp->SetSphereRadius(Temp->GetUnscaledSphereRadius() + SphereOverlapSizeIncrease);
 	}
 }
 

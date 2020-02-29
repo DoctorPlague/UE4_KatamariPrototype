@@ -20,7 +20,7 @@ public:
 
 private:
 
-	void InitializeNodule(UStaticMeshComponent* InputMesh, USphereComponent* InputCollider, FVector RelativeLocation);
+	FORCEINLINE void InitializeNodule(UStaticMeshComponent* InputMesh, USphereComponent* InputCollider, FVector RelativeLocation);
 
 protected:
 	// Called when the game starts or when spawned
@@ -45,59 +45,59 @@ protected:
 
 	// Nodule Static Meshes
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh0;
+		class UStaticMeshComponent* NoduleMesh0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh1;
+		class UStaticMeshComponent* NoduleMesh1;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh2;
+		class UStaticMeshComponent* NoduleMesh2;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh3;
+		class UStaticMeshComponent* NoduleMesh3;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh4;
+		class UStaticMeshComponent* NoduleMesh4;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh5;
+		class UStaticMeshComponent* NoduleMesh5;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh6;
+		class UStaticMeshComponent* NoduleMesh6;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh7;
+		class UStaticMeshComponent* NoduleMesh7;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh8;
+		class UStaticMeshComponent* NoduleMesh8;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh9;
+		class UStaticMeshComponent* NoduleMesh9;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh10;
+		class UStaticMeshComponent* NoduleMesh10;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* NoduleMesh11;
+		class UStaticMeshComponent* NoduleMesh11;
 
 	// Nodule Overlap Spheres
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap0;
+		class USphereComponent* NoduleOverlap0;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap1;
+		class USphereComponent* NoduleOverlap1;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap2;
+		class USphereComponent* NoduleOverlap2;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap3;
+		class USphereComponent* NoduleOverlap3;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap4;
+		class USphereComponent* NoduleOverlap4;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap5;
+		class USphereComponent* NoduleOverlap5;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap6;
+		class USphereComponent* NoduleOverlap6;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap7;
+		class USphereComponent* NoduleOverlap7;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap8;
+		class USphereComponent* NoduleOverlap8;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap9;
+		class USphereComponent* NoduleOverlap9;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap10;
+		class USphereComponent* NoduleOverlap10;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Nodule, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* NoduleOverlap11;
+		class USphereComponent* NoduleOverlap11;
 
 	// Containers for iterative access to nodules
-	TArray<UStaticMeshComponent*> NoduleStaticMeshArray;
-	TArray<USphereComponent*> NoduleSphereOverlapArray;
+	TArray<class UStaticMeshComponent*> NoduleStaticMeshArray;
+	TArray<class USphereComponent*> NoduleSphereOverlapArray;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
